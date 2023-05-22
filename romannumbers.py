@@ -23,46 +23,58 @@ millares = {
 class RomanNumberError(Exception):
    pass
 
+def listar_numero(num):
+   n__mil = num // 1000 * 1000
+   n_cen = (num % 1000) // 100 * 100
+   n_dec = (num % 100)//10*10
+   n_uni = (num % 10)
+
+   return n__mil,n_cen,n_dec,n_uni
+
+def sacar_clave(num):
+   if num >= 1000:
+      clave = millares
+      num = num // 1000
+   elif num >= 100:
+      clave = centenas
+      #num //=100   
+      num = num//100
+   elif num >= 10:
+      clave = decenas
+      num = num // 10
+   else:
+         clave = unidades
+   return clave,num
+
+def logica_aplastante(digito,clau):
+   res = ""
+   if digito < 4:                            
+      res += digito * clau[1]       
+   elif digito == 4:   
+      res += clau[1] + clau [5]                      
+   elif digito< 9:
+      num_palitos = digito -5
+      res += clau[5] + num_palitos * clau[1]
+   else:
+      res += clau[1] + clau[10]
+   return res
 def entero_a_romano(n_int):
+   
 
    if n_int > 3999:
       raise RomanNumberError("El número debe ser inferior a 4000")
 
-   n__mil = n_int // 1000 * 1000
-   n_cen = (n_int % 1000) // 100 * 100
-   n_dec = (n_int % 100)//10*10
-   n_uni = (n_int % 10)
-
-   digitos = [n__mil,n_cen,n_dec,n_uni]
-
+   digitos = listar_numero(n_int)
+   
    resultado = ""
 
    for digito in digitos:
       if digito == 0:
          continue
       
-      if digito >= 1000:
-         clave = millares
-         digito = digito // 1000
-      elif digito >= 100:
-         clave = centenas
-         #digito //=100   
-         digito = digito//100
-      elif digito >= 10:
-         clave = decenas
-         digito = digito // 10
-      else:
-         clave = unidades
-            
+      clave, digito = sacar_clave(digito)
 
-      if digito < 4:                            
-         resultado += digito * clave[1]       
-      elif digito == 4:   
-         resultado += clave[1] + clave [5]                      
-      elif digito< 9:
-         num_palitos = digito -5
-         resultado += clave[5] + num_palitos * clave[1]
-      else:
-         resultado += clave[1] + clave[10]
+      resultado += logica_aplastante(digito,clave)
+            
    return resultado
   
