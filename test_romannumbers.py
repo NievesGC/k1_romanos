@@ -1,4 +1,4 @@
-from romannumbers import entero_a_romano
+from romannumbers import entero_a_romano,sacar_unidad,decimales
 
 def test_uno_es_palito():
     assert entero_a_romano(1) == "I"
@@ -29,3 +29,13 @@ def test_nueve_es_palito_equis():
 
 def test_diez_es_equis():
     assert entero_a_romano(10) == "X"
+
+def test_once_es_equis_equis_palito():
+    assert entero_a_romano(11) == "XI"
+
+
+def test_pruebas_sacarDecimal():
+    assert sacar_unidad(22) == 2
+
+def test_decimales():
+    assert decimales(96) == "XCVI"
