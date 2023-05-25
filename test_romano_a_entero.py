@@ -38,5 +38,29 @@ def test__restas_permitidas():
     with pytest.raises(RomanNumberError):
         romano_a_entero("XM")
 
-    with pytest.raises(RomanNumberError): #PENDIENTE 
-        romano_a_entero("CM")
+def test_restas_C_solo_en_D_M():
+    assert romano_a_entero("CI")== 101
+    assert romano_a_entero("CV")== 105
+    assert romano_a_entero("CL")== 150
+    assert romano_a_entero("CD")== 400
+    assert romano_a_entero("CM")== 900
+
+def test_V_L_D_no_se_pueden_restar():
+    with pytest.raises(RomanNumberError):
+        romano_a_entero("VX")
+    with pytest.raises(RomanNumberError):
+        romano_a_entero("LC")
+    with pytest.raises(RomanNumberError):
+        romano_a_entero("DM")
+
+def test_no_repeticion_de_restas():
+    with pytest.raises(RomanNumberError):
+        romano_a_entero("IIX")
+    with pytest.raises(RomanNumberError):
+        romano_a_entero("IVX")
+    with pytest.raises(RomanNumberError):
+        romano_a_entero("IVIX")
+    with pytest.raises(RomanNumberError):
+        romano_a_entero("IXIX")
+def test_pa_fastidiar():
+    romano_a_entero("MCMXCIX") == 1999
