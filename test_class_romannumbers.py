@@ -23,3 +23,20 @@ def test_cambiar_valor_de_romano():
     romano.numero = 2
     assert romano.numero == 2
     assert romano._simbolo == "II"
+
+    romano.simbolo = "III"
+    assert  romano.numero == 3
+    assert romano.simbolo == "III"
+
+def test_multiplicaciones():
+    romano1 = RomanNumber("X")
+    romano2 = RomanNumber(5)
+
+    assert romano1 * romano2 == RomanNumber("L")
+    assert romano1 * 5 == RomanNumber(50)
+    assert romano1 * "V" == RomanNumber(50)
+
+    assert 5 * romano1 == RomanNumber(50)
+
+
+
