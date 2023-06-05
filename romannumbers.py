@@ -31,8 +31,8 @@ def listar_numero(num):
 
    return n_mil,n_cen,n_dec,n_uni
 
-def sacar_clave(num):
-   if num >= 1000:
+def sacar_clave(num): #3546
+   if num >= 1000:    
       clave = millares
       num = num // 1000
    elif num >= 100:
@@ -64,7 +64,7 @@ def entero_a_romano(n_int):
    if n_int > 3999:
       raise RomanNumberError("El número debe ser inferior a 4000")
 
-   digitos = listar_numero(n_int)
+   digitos = listar_numero(n_int)  #3000,500,50,6
    
    resultado = ""
 
@@ -104,7 +104,7 @@ def romano_a_entero(letras):
 
    comprueba_excepciones(letras)
 
-   for numeral in reversed(letras):
+   for numeral in reversed(letras):  #3546 -- MMMDXXLVI - IVLXDMMM
       valor_actual = numeros_romanos[numeral]
 
       if valor_actual <= 5 and ultimo_valor >= 50:
